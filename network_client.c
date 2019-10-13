@@ -10,6 +10,8 @@
 #include <linux/socket.h>
 #include <linux/slab.h>
 
+#include <linux/sched/signal.h>
+
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Aby Sam Ross");
 

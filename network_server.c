@@ -19,7 +19,9 @@
 #include <net/inet_connection_sock.h>
 #include <net/request_sock.h>
 
-#define DEFAULT_PORT 2325
+#include <linux/sched/signal.h>
+
+#define DEFAULT_PORT 8080
 #define MODULE_NAME "tmem_tcp_server"
 #define MAX_CONNS 16
 
@@ -416,7 +418,7 @@ int tcp_server_accept(void)
                pr_info("accept connection\n");
 
                accept_err = 
-                       socket->ops->accept(socket, accept_socket, O_NONBLOCK);
+                       socket->ops->accept(socket, accept_socket, O_NONBLOCK, 0);
 
                if(accept_err < 0)
                {
@@ -432,9 +434,7 @@ int tcp_server_accept(void)
                addr_len = sizeof(struct sockaddr_in);
 
                accept_err = 
-               accept_socket->ops->getname(accept_socket,\
-                               (struct sockaddr *)client,\
-                               &addr_len, 2);
+               accept_socket->ops->getname(accept_socket, (struct sockaddr *)client, 2);
 
                if(accept_err < 0)
                {

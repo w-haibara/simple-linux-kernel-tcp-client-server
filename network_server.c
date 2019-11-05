@@ -21,7 +21,7 @@
 
 #include <linux/sched/signal.h>
 
-#define DEFAULT_PORT 8080
+#define DEFAULT_PORT 2325
 #define MODULE_NAME "tmem_tcp_server"
 #define MAX_CONNS 16
 
